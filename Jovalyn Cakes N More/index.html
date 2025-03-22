@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jovalyn Cakes And N More</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="images/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <img src="images/logo.png" alt="logo" >
+        </div>
+
+        <ul class="menu-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="dropdown">
+                <a href="product.html">Products</a>
+                <ul class="dropdown-menu">
+                    <li><a href="cakes.html">Cake</a></li>
+                    <li><a href="pastries.html">Pastries</a></li>
+                    <li><a href="chinchin.html">Chin-Chin</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                    <li><a href="bread.html">Bread</a></li>
+                    <li><a href="dessert.html">Dessert</a></li>
+                    <li><a href="specials.html">Specials</a></li>
+
+                </ul>
+            </li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="order.html">Orders</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+        <div class="search-icon" onclick="openSearch()">
+            <i class="fas fa-search"></i> <!-- Font Awesome search icon -->
+        </div>
+        <div class="profile-icon" onclick="openProfileModal()">
+            <i class="fas fa-user-circle"></i> <!-- Font Awesome profile icon -->
+        </div>
+    </div>
+    <div id="searchModal" class="search-modal">
+        <div class="search-modal-content">
+            <span class="close" onclick="closeSearch()">&times;</span>
+            <input type="text" placeholder="Search..." id="searchInput" class="search-input">
+            <button onclick="searchFunction()">Search</button>
+        </div>
+    </div>
+    <!-- Profile Modal for Sign Up/Login -->
+    <div id="profileModal" class="profile-modal">
+        <div class="profile-modal-content">
+            <span class="close" onclick="closeProfileModal()">&times;</span>
+            <h2>Sign Up or Log In</h2>
+
+            <!-- Toggle between Sign Up and Log In forms -->
+            <div class="form-toggle">
+                <button onclick="showSignUp()">Sign Up</button>
+                <button onclick="showLogin()">Log In</button>
+            </div>
+
+            <!-- Sign Up Form -->
+            <div id="signUpForm" class="form-container" style="display: none;">
+                <h3>Create an Account</h3>
+                <input type="text" id="signUpUsername" placeholder="Username" required>
+                <input type="email" id="signUpEmail" placeholder="Email" required>
+                <input type="password" id="signUpPassword" placeholder="Password" required>
+                <button onclick="signUp()">Sign Up</button>
+            </div>
+
+            <!-- Log In Form -->
+            <div id="loginForm" class="form-container">
+                <h3>Log In</h3>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <button onclick="logIn()">Log In</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="animated-text">
+                <span class="welcome">Welcome to</span>
+                <span class="highlighted">Jovalyn Cakes and More.</span>
+            </h1>
+            <p>Your one-stop shop for delicious cakes, pastries, and more!</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary">Shop Now</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/hero-image.jpg" alt="Delicious cakes and pastries">
+        </div>
+    </div>
+
+    <div class="body-section">
+        <!-- About Us Section -->
+        <section class="about-us" id="about-us">
+            <h2>About Us</h2>
+            <p>
+                Welcome to Jovalyn Cakes N More, where we create delightful and unforgettable baked goods
+                tailored to your taste. From cakes to pastries, we have everything to make your moments special.
+            </p>
+        </section>
+
+        <!-- Cakes Section -->
+        <section class="gallery-section">
+            <h2>Cakes</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/cakee.jpg" alt="Cake 1" class="hover-img" data-hover="images/cake1-hover.jpg">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/cake.jpg" alt="Cake 2" class="hover-img" data-hover="images/cake2-hover.jpg">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Simple and Creative Birthday Cake Decorating Ideas You Can Try at Home.jpg" alt="Cake 3" class="hover-img" data-hover="images/cake3-hover.jpg">
+                </div>
+            </div>
+        </section>
+
+        <!-- Pastries Section -->
+        <section class="gallery-section">
+            <h2>Pastries</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/pastry.jpg" alt="Pastry 1" class="hover-img" data-hover="images/pastery.jpg">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pastry2.jpg" alt="Pastry 2" class="hover-img" data-hover="images/eggroll.jpg">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/pastry3.jpg" alt="Pastry 3" class="hover-img" data-hover="images/samosa.jpg">
+                </div>
+            </div>
+        </section>
+
+        <!-- Others Section -->
+        <section class="gallery-section">
+            <h2>Others</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/shawarma.jpg" alt="Other 1" class="hover-img" data-hover="images/burger.jpg">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/cock.jpg" alt="Other 2" class="hover-img" data-hover="images/mocktail.jpg">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/Nigerian-food.jpg" alt="Other 3" class="hover-img" data-hover="images/fruit_juice.jpg">
+                </div>
+            </div>
+        </section>
+    </div>
+    <div>
+        <section id="testimonials" class="container py-5">
+            <div class="section-title">
+              <h2 style="text-decoration: underline;">Customer Review</h2>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <blockquote class="blockquote">
+                  <pre>⭐⭐⭐⭐⭐ Absolutely Delicious!
+                    "I ordered a birthday cake for my sister, and it was beyond perfect! <br>The design was stunning, and the taste was even better. Moist, rich, and full of flavor. Everyone at the party loved it! Definitely ordering again."
+                    </pre>
+                  <p class="blockquote-footer" style=" text-align:right;"><em>— Amanda O.</em></p>
+                </blockquote>
+              </div>
+              <div class="col-md-6">
+                <blockquote class="blockquote">
+                    <pre>⭐⭐⭐⭐⭐ Great Customer Service!
+                        "The team was super helpful in guiding me through the customization process.  <br>My cake arrived on time, and it was exactly what I wanted. Will definitely be ordering again!"
+                        </pre>
+                  <p class="blockquote-footer" style=" text-align:right;"><em>— James L.</em></p>
+                </blockquote>
+              </div>
+            </div>
+          </section>
+    </div>
+    <section id="contact" class="container py-5">
+        <div class="section-title">
+          <h2 style="text-decoration: underline;">Contact</h2>
+        </div>
+        <div class="row" style="display: flex;">
+          <div class="col-md-6 contact-info" >
+            <p><strong>Email:</strong> jenibele@gmail.com</p>
+            <p><strong>Phone:</strong> +234 802 999 1048</p>
+            <p><strong>Location:</strong> Abuja, Nigeria</p>
+          </div>
+          <div class="col-md-6" style="display: flex; position:relative; left: 400px; font-size:15px;">
+            <form id="contactForm">
+              <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" name="name" required style="width: 500px;">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Your Email</label>
+                <input type="email" class="form-control" id="email" name="email" required style="width: 500px;">
+              </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="4" required style="width: 500px;"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <p id="formResponse" style="display: none; margin-top: 10px;"></p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <p>© 2025 Valerie Onoja Amarachi. All Rights Reserved.</p>
+      </footer>
+
+    <script src="script.js">
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth Scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+              anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+                });
+              });
+            });
+            const contactForm = document.getElementById('contactForm');
+            const formResponse = document.getElementById('formResponse');
+
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                if (name && email && message) {
+                formResponse.style.display = 'block';
+                formResponse.style.color = 'green';
+                formResponse.textContent = 'Your message has been sent successfully!';
+                contactForm.reset();
+                } else {
+                formResponse.style.display = 'block';
+                formResponse.style.color = 'red';
+                formResponse.textContent = 'Please fill out all fields.';
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>

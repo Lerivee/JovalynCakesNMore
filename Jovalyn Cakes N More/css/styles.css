@@ -1,0 +1,876 @@
+body {
+    background-color: #020202; /* Set entire page background to white */
+    margin: 0; /* Remove default body margin */
+    font-family: "open sans", Helvetica, Arial, sans-serif; /* Optional: Set font family */
+}
+
+/* Style for the navbar container */
+.navbar {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Align items vertically in the center */
+    list-style-type: none; /* Remove bullet points */
+    margin: 0px; /* Reset margin */
+    padding: 5px 15px; /* Adjust padding */
+    justify-content: space-between; /* Distribute space between logo and menu links */
+    background-color: white; /* Set background color of navbar to white */
+    border-bottom: 1px solid #ddd; /* Optional: Add border at the bottom of the navbar */
+    border-top: 1px solid #ddd; /* Optional: Add border at the bottom of the navbar */
+}
+
+/* Style for the logo */
+.navbar img {
+    height: 80px; /* Adjust logo size */
+    width: auto; /* Keep the aspect ratio */
+    margin-left: 30px;
+}
+
+/* Style for each list item */
+.navbar li {
+    margin-left: 30px;
+
+}
+
+/* Style for the links */
+.navbar a {
+
+    text-decoration: none; /* Remove underline */
+    padding: 5px 17px; /* Adjust padding for better clickability */
+    display: block; /* Make the anchor tags block-level elements */
+    font-family: Arial, Helvetica, sans-serif;
+    color: #444;
+    font-size: 15px;
+
+
+}
+
+.navbar a:hover {
+    border-radius: 5px; /* Add rounded corners for hover effect */
+    text-decoration: none; /* Remove default underline */
+    color: purple; /* Change text color on hover */
+    background-color: #000000;
+    position: relative; /* Required for positioning the pseudo-element */
+}
+
+.navbar a:hover::after {
+    content: ""; /* Add an empty pseudo-element */
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Adjust distance below the text */
+    height: 2px; /* Thickness of the underline */
+    background-color: purple; /* Color of the underline */
+    width: 120%; /* Make the underline longer than the text */
+    transform: translateX(-10%); /* Center the extended underline */
+}
+
+/* Hamburger menu icon */
+.menu-icon {
+    display: none; /* Hidden by default */
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Menu links */
+.menu-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1; /* Allow the links to take available space */
+    justify-content: flex-end; /* Align links to the right */
+}
+
+.menu-links li {
+    margin: 0 5px; /* Reduced margin for desktop */
+}
+.dropdown {
+    position: relative; /* Set relative positioning for the dropdown */
+}
+
+.dropdown-menu {
+    display: none; /* Hide the dropdown menu initially */
+    position: absolute;
+    top: 30px; /* Position it below the parent link */
+    left: -50px;
+    background-color: white;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Drop shadow for better visibility */
+    min-width: 160px; /* Minimum width of the dropdown */
+    z-index: 1; /* Ensure it appears above other content */
+}
+
+.dropdown-menu li {
+    padding: 8px 16px;
+    opacity: 0; /* Initially hide the items */
+    transform: translateY(-20px); /* Move items up to make them hidden */
+    animation:  dropdownEffect 0.5s forwards; /* Animation for each item */
+}
+
+.dropdown-menu a {
+    color: black;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    background-color: lightgray; /* Change background on hover */
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: inline-block;
+    list-style-type: none;
+
+}
+@keyframes dropdownEffect {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Move the items into place */
+    }
+}
+
+/* Delay each item to create a cascading effect */
+.dropdown-menu li:nth-child(1) {
+    animation-delay: 0.1s; /* Delay first item */
+}
+
+.dropdown-menu li:nth-child(2) {
+    animation-delay: 0.2s; /* Delay second item */
+}
+
+.dropdown-menu li:nth-child(3) {
+    animation-delay: 0.3s; /* Delay third item */
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Styling for the search and profile icons */
+.search-icon i, .profile-icon i {
+    font-size: 24px;
+    color: black;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .menu-icon {
+        display: block; /* Show menu icon */
+    }
+
+    .menu-links {
+        display: none; /* Hide links by default */
+        flex-direction: column; /* Stack links vertically */
+        background-color: #444; /* Background for dropdown */
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 100%; /* Full-width dropdown */
+        text-align: center;
+    }
+
+    .menu-links.show {
+        display: flex; /* Show links when toggled */
+    }
+
+    .menu-links li {
+        margin: 8px 0; /* Adjust spacing for vertical layout */
+    }
+}
+.icons {
+    display: flex;
+    align-items: center;
+}
+.search-icon i {
+    font-size: 24px;
+    color: #444;
+    cursor: pointer;
+    margin-right: 15px; /* Space between search and profile icon */
+}
+
+/* Style for the profile icon */
+.profile-icon i {
+    font-size: 24px;
+    color: #444;
+    cursor: pointer;
+}
+/* Search Modal Styles */
+.search-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top of other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with transparency */
+}
+
+.search-modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.search-input {
+    width: 80%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    background-color: purple;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Close button */
+.close {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+/* Responsive Design for Navbar */
+@media (max-width: 768px) {
+    .menu-links {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        background-color: #444;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 100%;
+    }
+
+    .menu-links.show {
+        display: flex;
+    }
+
+    .menu-links li {
+        margin: 10px 0;
+    }
+}
+/* Profile Modal Styles */
+.profile-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top of other content */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Black with transparency */
+}
+
+.profile-modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.profile-modal h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form-toggle button {
+    margin: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.form-container input {
+    width: 80%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+button {
+    padding: 8px 16px;
+    border: none;
+    background-color: purple;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.close {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background: linear-gradient(to bottom right, #511254, #531b58); /* Soft gradient background */
+    height: 390px; /* Full viewport height */
+    box-sizing: border-box;
+}
+
+/* Hero Content */
+.hero-content {
+    max-width: 50%;
+    text-align: left;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+/* Hero Buttons */
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    padding: 12px 24px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 25px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #ff4c4c;
+}
+
+.btn-secondary {
+    background-color: #ffffff;
+    color: #511254;
+    border: 2px solid #000000;
+}
+
+.btn-secondary:hover {
+    background-color: #511254;
+    color: #ffffff;
+    animation: 1.5s ease forwards;
+}
+
+/* Hero Image */
+.hero-image {
+    max-width: 45%;
+    text-align: center;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* General Styles */
+.animated-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: black;
+    position: relative; /* For precise positioning */
+    left: 7px;
+}
+
+/* Welcome Text Animation */
+.welcome {
+    display: inline-block;
+    text-indent: 7px; /* Space between "Welcome to" and the next part */
+    animation: fadeInWord 3s ease forwards; /* Animate "Welcome to" */
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 54px;
+}
+
+/* Highlighted part animation for "Jovalyn Cakes N More" */
+.highlighted {
+    display: inline-block;
+    overflow: hidden; /* Prevent overflow during animation */
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.highlighted span {
+    display: inline-block; /* Animate each letter independently */
+    margin-left: 1px;
+    opacity: 0; /* Start hidden */
+    transform: translateY(30px); /* Start slightly below */
+    animation: fadeInLetter 0.5s ease forwards;
+}
+
+/* Fade-in animation for "Welcome to" */
+@keyframes fadeInWord {
+    0% {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Letter-by-letter animation for "Jovalyn Cakes N More" */
+@keyframes fadeInLetter {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+main {
+    padding: 20px;
+}
+
+/* Section Styles */
+section {
+    margin: 40px 0;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+
+/* General Styling */
+.body-section {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    color: black;
+}
+
+.about-us p {
+    text-align: center;
+    font-size: 1rem;
+    margin: 0 auto;
+    width: 60%;
+    color: #555;
+}
+
+/* Gallery Styling */
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.gallery-item {
+    width: 270px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* .gallery-item:hover {
+    transform: scale(1.1);
+} */
+
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+}
+
+/* Hover Effect for Images */
+.hover-img {
+    display: block;
+    width: 270px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.7s ease;
+}
+
+/* .hover-img:hover {
+    opacity: 0;
+} */
+
+.btn-primary {
+    background-color: #001f3f;
+    border-color: #001f3f;
+}
+
+.btn-primary:hover {
+    background-color: #511254;
+    border-color: #511254;
+}
+
+.btn-secondary {
+    background-color: #001f3f;
+    border-color: #001f3f;
+}
+
+.btn-secondary:hover {
+    background-color: #511254;
+    border-color: #511254;
+}
+
+.section-title {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.about-section {
+    display: flex;
+    align-items: left;
+    gap: 20px;
+}
+
+.about-section img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+footer {
+    background-color: #511254;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #020202;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #511254;
+    padding: 15px 20px;
+}
+
+.navbar .logo img {
+    height: 50px;
+}
+
+.menu-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-links li {
+    display: inline;
+}
+
+.menu-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.menu-links a:hover {
+    background-color: white;
+    color: #511254;
+    border-radius: 5px;
+}
+
+.order-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #000000;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.order-container h1 {
+    color: #511254;
+}
+
+.order-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.order-form label {
+    font-weight: bold;
+    text-align: left;
+}
+
+.order-form input,
+.order-form select,
+.order-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.order-form textarea {
+    resize: none;
+    background-color: #000000;
+}
+
+.order-btn {
+    background-color: #511254;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.order-btn:hover {
+    background-color: #ba55d3;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #020202;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #511254;
+    padding: 15px 20px;
+}
+
+.navbar .logo img {
+    height: 50px;
+}
+
+.menu-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-links li {
+    display: inline;
+}
+
+.menu-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.menu-links a:hover {
+    background-color: white;
+    color: #511254;
+    border-radius: 5px;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #000000;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    text-align: center;
+}
+
+.contact-container h1 {
+    color: #511254;
+}
+
+.contact-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    text-align: left;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #511254;
+    border-radius: 5px;
+    font-size: 16px;
+    background: black;
+    color: white;
+}
+
+.contact-form textarea {
+    resize: none;
+}
+
+.contact-btn {
+    background-color: #511254;
+    color: black;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-btn:hover {
+    background-color: #ba55d3;
+}
+
+/* products.css */
+
+body {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    color: #b300b3;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product {
+    background: #333;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    width: 300px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(179, 0, 179, 0.5);
+    transition: transform 0.3s;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product h2 {
+    color: #b300b3;
+}
+
+.product p {
+    font-size: 14px;
+}
+
+.product-btn {
+    display: inline-block;
+    background-color: #b300b3;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.product-btn:hover {
+    background-color: #800080;
+}
+
+.product-page {
+    padding: 20px;
+    margin: auto;
+    max-width: 600px;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(179, 0, 179, 0.5);
+}
+
+.product-page img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 10px;
+}
